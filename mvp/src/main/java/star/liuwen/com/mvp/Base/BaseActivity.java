@@ -30,8 +30,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected T mPresenter;
     private static long mPreTime;
     private static Activity mCurrentActivity;//对所有的Activity进行管理
-    public static List<Activity> mActivity = new ArrayList<>();
-    protected Bundle saveInstanceState;
+    protected static List<Activity> mActivity = new ArrayList<>();
     protected StateView mStateView;//进行布局管理 无网络 无数据 正在加载
     private PermissionListener mPermissionListener;
     private View mContextView;
@@ -54,12 +53,10 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             //这里的资源可以替换成你所需要的资源
         }
 
-        this.saveInstanceState = savedInstanceState;
         //初始化的时候将其添加到集合当中
         synchronized (mActivity) {
             mActivity.add(this);
         }
-
         mPresenter = createPresenter();
         //子类不再需要设置布局ID，也不再需要使用ButterKnife.bind()
         // ButterKnife.bind(this);
@@ -186,8 +183,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
                     }
                 }
                 break;
+            default:
+                break;
         }
     }
-
-
 }

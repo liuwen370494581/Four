@@ -27,6 +27,7 @@ public class ApiRetrofit {
     private final Retrofit mRetrofit;
     private OkHttpClient mClient;
     private ApiService mApiService;
+    private static ApiRetrofit instance;
 
 //    //缓存配置
 //    private Interceptor mCacheInterceptor = new Interceptor() {
@@ -134,9 +135,9 @@ public class ApiRetrofit {
 
     //单列模式
     public static ApiRetrofit getInstance() {
-        if (mApiRetrofit == null) {
-            synchronized (Object.class) {
-                if (mApiRetrofit == null) {
+        if (null==instance) {
+            synchronized (ApiRetrofit.class) {
+                if (null==instance) {
                     mApiRetrofit = new ApiRetrofit();
                 }
             }
